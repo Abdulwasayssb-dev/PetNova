@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetNova | Pet Marketplace and Care</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">PetNova</a>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#marketplace">Pets</a>
+                <a href="#products">Products</a>
+                <a href="#health">Pet Health</a>
+                <a href="#pricing">Price Advisor</a>
+                <a href="#veterinary">Veterinary</a>
+            </div>
+
+            <a href="#account" class="nav-button">Login / Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">YOUR PET'S WORLD</p>
+                <h1>Everything Your Pet Needs, In One Place</h1>
+                <p>
+                    Discover pets, explore pet products, learn about pet care,
+                    and connect with veterinary professionals through PetNova.
+                </p>
+
+                <a href="#marketplace" class="button">Explore Pets</a>
+                <a href="#health" class="button secondary">Explore Pet Care</a>
+            </div>
+        </section>
+        
+        
+        
+<section id="marketplace" class="section">
+    <h2>Pet Marketplace</h2>
+    <p>Explore available pets or create a listing as a seller.</p>
+
+    <div class="card-grid">
+        <article class="card">
+            <h3>Find a Pet</h3>
+            <p>Browse pet listings by type, breed, and location.</p>
+            <button type="button"
+                    data-message="Pet search will be connected to the database later.">
+                Browse Pets
+            </button>
+        </article>
+
+        <article class="card">
+            <h3>Sell a Pet</h3>
+            <p>Create a listing and receive a recommended price before submitting it.</p>
+            <a href="#seller-listing" class="button">Create Listing</a>
+        </article>
+    </div>
+
+    <form id="seller-listing" class="feature-form">
+        <h3>Create Pet Listing</h3>
+
+        <label for="listing-photo">Pet Photo</label>
+        <input type="file" id="listing-photo"
+               accept="image/jpeg,image/png,image/webp" required>
+
+        <label for="listing-pet-type">Pet Type</label>
+        <select id="listing-pet-type" required>
+            <option value="">Select pet type</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="listing-breed">Breed</label>
+        <input type="text" id="listing-breed"
+               placeholder="Enter breed" required>
+
+        <label for="listing-age">Age (months)</label>
+        <input type="number" id="listing-age"
+               min="0" max="300" placeholder="Enter age" required>
+
+        <label for="listing-city">City</label>
+        <input type="text" id="listing-city"
+               placeholder="e.g. Mianwali" required>
+
+        <button type="button" id="calculate-listing-price">
+            Calculate Recommended Price
+        </button>
+
+        <p id="listing-price-result" role="status" aria-live="polite">
+            Complete the pet details to see the demo recommendation.
+        </p>
+
+        <label for="seller-price">Your Listing Price (PKR)</label>
+        <input type="number" id="seller-price"
+               min="1" step="1" placeholder="Enter your price" required>
+
+        <p id="listing-price-warning" role="status" aria-live="polite"></p>
+
+        <button type="submit">Submit Listing</button>
+        <p id="listing-submit-result" role="status" aria-live="polite"></p>
+
+        <p class="notice">
+            The price recommendation is a prototype estimate, not a verified market valuation.
+            Listing submission will be connected to the server later.
+        </p>
+    </form>
+</section>
+
+
+        <section id="products" class="section alternate">
+            <h2>Pet Products Store</h2>
+            <p>Explore food, toys, grooming supplies, and accessories.</p>
+
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Pet Food</h3>
+                    <p>Explore food options for different pets.</p>
+                </article>
+
+                <article class="card">
+                    <h3>Toys and Accessories</h3>
+                    <p>Browse toys, collars, grooming items, and more.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="health" class="section">
+            <h2>AI Pet Health Assistant</h2>
+            <p>
+                Upload a pet photo and describe its symptoms to request
+                preliminary guidance. This feature does not replace a veterinarian.
+            </p>
+
+            <form id="health-form" class="feature-form">
+                <label for="pet-photo">Upload Pet Photo</label>
+                <input
+                    type="file"
+                    id="pet-photo"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+
+                <img id="photo-preview" alt="Pet photo preview" hidden>
+
+                <label for="pet-type">Pet Type</label>
+                <select id="pet-type" required>
+                    <option value="">Select pet type</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="symptoms">Describe the Symptoms</label>
+                <textarea
+                    id="symptoms"
+                    rows="4"
+                    placeholder="Describe what you have noticed..."
+                    required
+                ></textarea>
+
+                <button type="submit">Check Guidance</button>
+                <p id="health-result" role="status"></p>
+                <p class="notice">
+                    Severe symptoms or serious injuries require prompt veterinary care.
+                </p>
+            </form>
+        </section>
+
+        <section id="pricing" class="section alternate">
+            <h2>Pet Price Advisor</h2>
+            <p>Get a preliminary price estimate using pet details and market data.</p>
+
+            <form id="price-form" class="feature-form">
+                <label for="listing-photo">Pet Photo</label>
+                <input
+                    type="file"
+                    id="listing-photo"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+
+                <label for="breed">Breed</label>
+                <input
+                    type="text"
+                    id="breed"
+                    placeholder="Enter breed"
+                    required
+                >
+
+                <label for="age">Age (months)</label>
+                <input
+                    type="number"
+                    id="age"
+                    min="0"
+                    max="300"
+                    placeholder="Enter age"
+                    required
+                >
+
+                <label for="location">City</label>
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="e.g. Mianwali"
+                    required
+                >
+
+                <button type="submit">Get Recommended Price</button>
+                <p id="price-result" role="status"></p>
+            </form>
+        </section>
+
+        <section id="care-guide" class="section">
+            <h2>Pet Diet and Care Guide</h2>
+            <p>Explore general care information and veterinary-reviewed articles.</p>
+
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Diet Guide</h3>
+                    <p>Learn about age-appropriate nutrition for pets.</p>
+                </article>
+
+                <article class="card">
+                    <h3>Care Articles</h3>
+                    <p>Explore hygiene, vaccination, and preventive-care topics.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="veterinary" class="section alternate">
+            <h2>Veterinary Consultation</h2>
+            <p>Explore veterinary profiles, consultation fees, and appointment options.</p>
+
+            <form id="appointment-form" class="feature-form">
+                <label for="owner-name">Your Name</label>
+                <input type="text" id="owner-name" required>
+
+                <label for="appointment-date">Preferred Appointment Date</label>
+                <input type="date" id="appointment-date" required>
+
+                <button type="submit">Request Appointment</button>
+                <p id="appointment-result" role="status"></p>
+            </form>
+        </section>
+
+        <section id="account" class="section">
+            <h2>Login / Register</h2>
+            <p>Account creation and secure login will be connected to PHP and MySQL.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 PetNova. Responsible pet care matters.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
