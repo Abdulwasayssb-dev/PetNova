@@ -1,16 +1,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PetNova | Pet Marketplace and Care</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- HEADER AND NAVIGATION -->
     <header>
         <nav class="navbar">
+
             <a href="#home" class="logo">PetNova</a>
 
             <div class="nav-links">
@@ -22,143 +28,199 @@
                 <a href="#veterinary">Veterinary</a>
             </div>
 
-            <a href="#account" class="nav-button">Login / Register</a>
+            <a href="login.php" class="nav-button">
+                Login / Register
+            </a>
+
         </nav>
     </header>
 
+
     <main>
+
+        <!-- HOME / HERO SECTION -->
         <section id="home" class="hero">
+
             <div class="hero-content">
+
                 <p class="eyebrow">YOUR PET'S WORLD</p>
+
                 <h1>Everything Your Pet Needs, In One Place</h1>
+
                 <p>
                     Discover pets, explore pet products, learn about pet care,
                     and connect with veterinary professionals through PetNova.
                 </p>
 
-                <a href="#marketplace" class="button">Explore Pets</a>
-                <a href="#health" class="button secondary">Explore Pet Care</a>
+                <a href="#marketplace" class="button">
+                    Explore Pets
+                </a>
+
+                <a href="#health" class="button secondary">
+                    Explore Pet Care
+                </a>
+
             </div>
+
         </section>
-        
-        
-        
-<section id="marketplace" class="section">
-    <h2>Pet Marketplace</h2>
-    <p>Explore available pets or create a listing as a seller.</p>
-
-    <div class="card-grid">
-        <article class="card">
-            <h3>Find a Pet</h3>
-            <p>Browse pet listings by type, breed, and location.</p>
-            <button type="button"
-                    data-message="Pet search will be connected to the database later.">
-                Browse Pets
-            </button>
-        </article>
-
-        <article class="card">
-            <h3>Sell a Pet</h3>
-            <p>Create a listing and receive a recommended price before submitting it.</p>
-            <a href="#seller-listing" class="button">Create Listing</a>
-        </article>
-    </div>
-
-    <form id="seller-listing" class="feature-form">
-        <h3>Create Pet Listing</h3>
-
-        <label for="listing-photo">Pet Photo</label>
-        <input type="file" id="listing-photo"
-               accept="image/jpeg,image/png,image/webp" required>
-
-        <label for="listing-pet-type">Pet Type</label>
-        <select id="listing-pet-type" required>
-            <option value="">Select pet type</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="other">Other</option>
-        </select>
-
-        <label for="listing-breed">Breed</label>
-        <input type="text" id="listing-breed"
-               placeholder="Enter breed" required>
-
-        <label for="listing-age">Age (months)</label>
-        <input type="number" id="listing-age"
-               min="0" max="300" placeholder="Enter age" required>
-
-        <label for="listing-city">City</label>
-        <input type="text" id="listing-city"
-               placeholder="e.g. Mianwali" required>
-
-        <button type="button" id="calculate-listing-price">
-            Calculate Recommended Price
-        </button>
-
-        <p id="listing-price-result" role="status" aria-live="polite">
-            Complete the pet details to see the demo recommendation.
-        </p>
-
-        <label for="seller-price">Your Listing Price (PKR)</label>
-        <input type="number" id="seller-price"
-               min="1" step="1" placeholder="Enter your price" required>
-
-        <p id="listing-price-warning" role="status" aria-live="polite"></p>
-
-        <button type="submit">Submit Listing</button>
-        <p id="listing-submit-result" role="status" aria-live="polite"></p>
-
-        <p class="notice">
-            The price recommendation is a prototype estimate, not a verified market valuation.
-            Listing submission will be connected to the server later.
-        </p>
-    </form>
-</section>
 
 
-        <section id="products" class="section alternate">
-            <h2>Pet Products Store</h2>
-            <p>Explore food, toys, grooming supplies, and accessories.</p>
+        <!-- PET MARKETPLACE -->
+        <section id="marketplace" class="section">
+
+            <h2>Pet Marketplace</h2>
+
+            <p>
+                Explore available pets or create a listing as a seller.
+            </p>
 
             <div class="card-grid">
+
+                <!-- FIND A PET -->
                 <article class="card">
-                    <h3>Pet Food</h3>
-                    <p>Explore food options for different pets.</p>
+
+                    <h3>Find a Pet</h3>
+
+                    <p>
+                        Browse pet listings by type, breed, and location.
+                    </p>
+
+                    <a href="pets.php" class="button">
+                        Browse Pets
+                    </a>
+
                 </article>
 
+
+                <!-- SELL A PET -->
                 <article class="card">
-                    <h3>Toys and Accessories</h3>
-                    <p>Browse toys, collars, grooming items, and more.</p>
+
+                    <h3>Sell a Pet</h3>
+
+                    <p>
+                        Create a pet listing, upload its photo,
+                        and receive a recommended maximum price.
+                    </p>
+
+                    <a href="sell_pet.php" class="button">
+                        Create Listing
+                    </a>
+
                 </article>
+
             </div>
+
+
+            <!-- SELLER LISTING SECTION -->
+            <div class="card" style="margin-top: 25px;">
+
+                <h3>Want to List Your Pet?</h3>
+
+                <p>
+                    Sign in with your seller account to enter your pet's
+                    details, upload a photo, and submit your asking price.
+                    Your listing will be sent for admin review.
+                </p>
+
+                <a href="sell_pet.php" class="button">
+                    Create a Pet Listing
+                </a>
+
+            </div>
+
         </section>
 
+
+        <!-- PET PRODUCTS -->
+        <section id="products" class="section alternate">
+
+            <h2>Pet Products Store</h2>
+
+            <p>
+                Explore food, toys, grooming supplies, and accessories.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+
+                    <h3>Pet Food</h3>
+
+                    <p>
+                        Explore food options for different pets.
+                    </p>
+
+                    <a href="products.php" class="button">
+                        Explore Products
+                    </a>
+
+                </article>
+
+
+                <article class="card">
+
+                    <h3>Toys and Accessories</h3>
+
+                    <p>
+                        Browse toys, collars, grooming items, and more.
+                    </p>
+
+                    <a href="products.php" class="button">
+                        View Products
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PET HEALTH ASSISTANT -->
         <section id="health" class="section">
+
             <h2>AI Pet Health Assistant</h2>
+
             <p>
                 Upload a pet photo and describe its symptoms to request
                 preliminary guidance. This feature does not replace a veterinarian.
             </p>
 
             <form id="health-form" class="feature-form">
-                <label for="pet-photo">Upload Pet Photo</label>
+
+                <label for="pet-photo">
+                    Upload Pet Photo
+                </label>
+
                 <input
                     type="file"
                     id="pet-photo"
                     accept="image/jpeg,image/png,image/webp"
                 >
 
-                <img id="photo-preview" alt="Pet photo preview" hidden>
+                <img
+                    id="photo-preview"
+                    alt="Pet photo preview"
+                    hidden
+                >
 
-                <label for="pet-type">Pet Type</label>
+                <label for="pet-type">
+                    Pet Type
+                </label>
+
                 <select id="pet-type" required>
+
                     <option value="">Select pet type</option>
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
                     <option value="other">Other</option>
+
                 </select>
 
-                <label for="symptoms">Describe the Symptoms</label>
+                <label for="symptoms">
+                    Describe the Symptoms
+                </label>
+
                 <textarea
                     id="symptoms"
                     rows="4"
@@ -166,27 +228,48 @@
                     required
                 ></textarea>
 
-                <button type="submit">Check Guidance</button>
+                <button type="submit">
+                    Check Guidance
+                </button>
+
                 <p id="health-result" role="status"></p>
+
                 <p class="notice">
-                    Severe symptoms or serious injuries require prompt veterinary care.
+                    Severe symptoms or serious injuries require prompt
+                    veterinary care.
                 </p>
+
             </form>
+
         </section>
 
+
+        <!-- PET PRICE ADVISOR -->
         <section id="pricing" class="section alternate">
+
             <h2>Pet Price Advisor</h2>
-            <p>Get a preliminary price estimate using pet details and market data.</p>
+
+            <p>
+                Get a preliminary price estimate using pet details
+                and market data.
+            </p>
 
             <form id="price-form" class="feature-form">
-                <label for="listing-photo">Pet Photo</label>
+
+                <label for="advisor-photo">
+                    Pet Photo
+                </label>
+
                 <input
                     type="file"
-                    id="listing-photo"
+                    id="advisor-photo"
                     accept="image/jpeg,image/png,image/webp"
                 >
 
-                <label for="breed">Breed</label>
+                <label for="breed">
+                    Breed
+                </label>
+
                 <input
                     type="text"
                     id="breed"
@@ -194,7 +277,10 @@
                     required
                 >
 
-                <label for="age">Age (months)</label>
+                <label for="age">
+                    Age (months)
+                </label>
+
                 <input
                     type="number"
                     id="age"
@@ -204,7 +290,10 @@
                     required
                 >
 
-                <label for="location">City</label>
+                <label for="location">
+                    City
+                </label>
+
                 <input
                     type="text"
                     id="location"
@@ -212,54 +301,165 @@
                     required
                 >
 
-                <button type="submit">Get Recommended Price</button>
+                <button type="submit">
+                    Get Recommended Price
+                </button>
+
                 <p id="price-result" role="status"></p>
+
             </form>
+
         </section>
 
-        <section id="care-guide" class="section">
-            <h2>Pet Diet and Care Guide</h2>
-            <p>Explore general care information and veterinary-reviewed articles.</p>
+
+        <!-- PET DIET AND CARE GUIDE -->
+         
+<!-- PET DIET AND CARE GUIDE -->
+<section id="care-guide" class="section">
+
+    <h2>Pet Diet and Care Guide</h2>
+
+    <p>
+        Explore general nutrition advice and practical pet-care information.
+    </p>
+
+    <div class="card-grid">
+
+        <article class="card">
+            <h3>Diet Guide</h3>
+
+            <p>
+                Learn about nutrition for puppies, adult dogs,
+                kittens, and adult cats.
+            </p>
+
+            <a href="diet_guide.php" class="button">
+                Explore Diet Guide
+            </a>
+        </article>
+
+        <article class="card">
+            <h3>Care Articles</h3>
+
+            <p>
+                Read about hygiene, vaccination, grooming,
+                and preventive care.
+            </p>
+
+            <a href="care_articles.php" class="button">
+                Read Care Articles
+            </a>
+        </article>
+
+    </div>
+
+</section>
+
+        
+
+
+        <!-- VETERINARY CONSULTATION -->
+        <section id="veterinary" class="section alternate">
+
+            <h2>Veterinary Consultation</h2>
+
+            <p>
+                Explore veterinary profiles, consultation options,
+                and appointment services through PetNova.
+            </p>
 
             <div class="card-grid">
+
+                <!-- VETERINARY PROFILES -->
                 <article class="card">
-                    <h3>Diet Guide</h3>
-                    <p>Learn about age-appropriate nutrition for pets.</p>
+
+                    <h3>Find a Veterinarian</h3>
+
+                    <p>
+                        View available veterinary profiles, clinic details,
+                        and contact information.
+                    </p>
+
+                    <a href="veterinary.php" class="button">
+                        Explore Veterinarians
+                    </a>
+
                 </article>
 
+
+                <!-- BOOK APPOINTMENT -->
                 <article class="card">
-                    <h3>Care Articles</h3>
-                    <p>Explore hygiene, vaccination, and preventive-care topics.</p>
+
+                    <h3>Book an Appointment</h3>
+
+                    <p>
+                        Submit your pet's details and preferred
+                        appointment date and time.
+                    </p>
+
+                    <a href="book_appointment.php" class="button">
+                        Request Appointment
+                    </a>
+
                 </article>
+
+
+                <!-- MY APPOINTMENTS -->
+                <article class="card">
+
+                    <h3>My Appointments</h3>
+
+                    <p>
+                        View your appointment requests and check
+                        their current status.
+                    </p>
+
+                    <a href="my_appointments.php" class="button">
+                        View My Appointments
+                    </a>
+
+                </article>
+
             </div>
+
         </section>
 
-        <section id="veterinary" class="section alternate">
-            <h2>Veterinary Consultation</h2>
-            <p>Explore veterinary profiles, consultation fees, and appointment options.</p>
 
-            <form id="appointment-form" class="feature-form">
-                <label for="owner-name">Your Name</label>
-                <input type="text" id="owner-name" required>
-
-                <label for="appointment-date">Preferred Appointment Date</label>
-                <input type="date" id="appointment-date" required>
-
-                <button type="submit">Request Appointment</button>
-                <p id="appointment-result" role="status"></p>
-            </form>
-        </section>
-
+        <!-- ACCOUNT SECTION -->
         <section id="account" class="section">
+
             <h2>Login / Register</h2>
-            <p>Account creation and secure login will be connected to PHP and MySQL.</p>
+
+            <p>
+                Create an account or log in to access PetNova services.
+            </p>
+
+            <a href="login.php" class="button">
+                Login
+            </a>
+
+            <a href="register.php" class="button secondary">
+                Register
+            </a>
+
         </section>
+
     </main>
 
+
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 PetNova. Responsible pet care matters.</p>
+
+        <p>
+            &copy; 2026 PetNova. Responsible pet care matters.
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
+
 </body>
+
 </html>

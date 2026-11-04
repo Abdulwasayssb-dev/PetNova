@@ -2,7 +2,7 @@
 "use strict";
 
 // ------------------------------------
-// 1. Pet Health Assistant (demo only)
+// 1. Pet Health Assistant (Demo Only)
 // ------------------------------------
 
 const healthForm = document.getElementById("health-form");
@@ -21,7 +21,11 @@ if (petPhoto && photoPreview) {
         }
 
         if (!file.type.startsWith("image/")) {
-            healthResult.textContent = "Please select a valid image file.";
+            if (healthResult) {
+                healthResult.textContent =
+                    "Please select a valid image file.";
+            }
+
             petPhoto.value = "";
             photoPreview.hidden = true;
             return;
@@ -36,11 +40,13 @@ if (healthForm) {
     healthForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        healthResult.textContent =
-            "This is currently a demo. No AI diagnosis has been performed. " +
-            "A veterinarian should assess your pet's symptoms. " +
-            "For breathing difficulty, collapse, severe bleeding, or suspected poisoning, " +
-            "seek urgent veterinary care.";
+        if (healthResult) {
+            healthResult.textContent =
+                "This is currently a demo. No AI diagnosis has been performed. " +
+                "A veterinarian should assess your pet's symptoms. " +
+                "For breathing difficulty, collapse, severe bleeding, or suspected poisoning, " +
+                "seek urgent veterinary care.";
+        }
     });
 }
 
@@ -49,7 +55,10 @@ if (healthForm) {
 // 2. Pet Listing and Price Limit
 // ------------------------------------
 
-const listingForm = document.getElementById("seller-listing");
+// The old demo listing submission handler has been removed.
+// sell_pet.php now handles listing validation, photo upload,
+// price checking, and database saving through PHP.
+
 const listingPetType = document.getElementById("listing-pet-type");
 const listingAge = document.getElementById("listing-age");
 const listingBreed = document.getElementById("listing-breed");
@@ -58,12 +67,11 @@ const calculateListingPrice = document.getElementById("calculate-listing-price")
 const sellerPrice = document.getElementById("seller-price");
 const listingPriceResult = document.getElementById("listing-price-result");
 const listingPriceWarning = document.getElementById("listing-price-warning");
-const listingSubmitResult = document.getElementById("listing-submit-result");
 
 let recommendedMaximum = null;
 
-// These are placeholder values for testing the website.
-// They are NOT verified pet market prices.
+// Placeholder values for the homepage prototype.
+// These are NOT verified market prices.
 function getDemoRecommendedPrice(petType) {
     const demoPrices = {
         dog: 30000,
@@ -74,41 +82,63 @@ function getDemoRecommendedPrice(petType) {
     return demoPrices[petType] ?? null;
 }
 
+// Homepage price calculation prototype
 if (calculateListingPrice) {
     calculateListingPrice.addEventListener("click", function () {
+
+        if (
+            !listingPetType ||
+            !listingBreed ||
+            !listingAge ||
+            !listingCity ||
+            !sellerPrice
+        ) {
+            return;
+        }
+
         if (
             !listingPetType.value ||
             !listingBreed.value.trim() ||
             listingAge.value === "" ||
             !listingCity.value.trim()
         ) {
-            listingPriceResult.textContent =
-                "Please complete the pet type, breed, age, and city first.";
+            if (listingPriceResult) {
+                listingPriceResult.textContent =
+                    "Please complete the pet type, breed, age, and city first.";
+            }
             return;
         }
 
-        recommendedMaximum = getDemoRecommendedPrice(listingPetType.value);
+        recommendedMaximum =
+            getDemoRecommendedPrice(listingPetType.value);
 
         if (recommendedMaximum === null) {
-            listingPriceResult.textContent =
-                "A recommendation is not available for this pet type.";
+            if (listingPriceResult) {
+                listingPriceResult.textContent =
+                    "A recommendation is not available for this pet type.";
+            }
             return;
         }
 
         sellerPrice.max = String(recommendedMaximum);
 
-        listingPriceResult.textContent =
-            "Demo recommended maximum: PKR " +
-            recommendedMaximum.toLocaleString("en-PK") +
-            ". These placeholder values must be replaced with verified market data.";
+        if (listingPriceResult) {
+            listingPriceResult.textContent =
+                "Demo recommended maximum: PKR " +
+                recommendedMaximum.toLocaleString("en-PK") +
+                ". These placeholder values must be replaced with verified market data.";
+        }
 
-        listingPriceWarning.textContent = "";
-        listingSubmitResult.textContent = "";
+        if (listingPriceWarning) {
+            listingPriceWarning.textContent = "";
+        }
     });
 }
 
+// Homepage price warning prototype
 if (sellerPrice) {
     sellerPrice.addEventListener("input", function () {
+
         const enteredPrice = Number(sellerPrice.value);
 
         if (
@@ -116,41 +146,17 @@ if (sellerPrice) {
             sellerPrice.value !== "" &&
             enteredPrice > recommendedMaximum
         ) {
-            listingPriceWarning.textContent =
-                "Price exceeds the recommended maximum of PKR " +
-                recommendedMaximum.toLocaleString("en-PK") +
-                ". Please enter a lower price.";
+            if (listingPriceWarning) {
+                listingPriceWarning.textContent =
+                    "Price exceeds the recommended maximum of PKR " +
+                    recommendedMaximum.toLocaleString("en-PK") +
+                    ". Please enter a lower price.";
+            }
         } else {
-            listingPriceWarning.textContent = "";
+            if (listingPriceWarning) {
+                listingPriceWarning.textContent = "";
+            }
         }
-    });
-}
-
-if (listingForm) {
-    listingForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        if (recommendedMaximum === null) {
-            listingSubmitResult.textContent =
-                "Please calculate the recommended price before submitting.";
-            return;
-        }
-
-        const enteredPrice = Number(sellerPrice.value);
-
-        if (
-            !Number.isFinite(enteredPrice) ||
-            enteredPrice <= 0 ||
-            enteredPrice > recommendedMaximum
-        ) {
-            listingSubmitResult.textContent =
-                "Listing blocked. Enter a valid price that does not exceed the recommended maximum.";
-            return;
-        }
-
-        listingSubmitResult.textContent =
-            "Demo check passed. The listing has NOT been saved. " +
-            "PHP and MySQL will be connected to save it securely later.";
     });
 }
 
@@ -166,43 +172,33 @@ if (priceForm) {
     priceForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        priceResult.textContent =
-            "This advisor is currently a prototype. Verified local listing data " +
-            "is needed before PetNova can provide a reliable market-based estimate.";
+        if (priceResult) {
+            priceResult.textContent =
+                "This advisor is currently a prototype. Verified local listing data " +
+                "is needed before PetNova can provide a reliable market-based estimate.";
+        }
     });
 }
 
 
 // ------------------------------------
-// 4. Veterinary Appointment Demo
+// 4. Veterinary Appointment Form
 // ------------------------------------
 
-const appointmentForm = document.getElementById("appointment-form");
-const appointmentDate = document.getElementById("appointment-date");
-const appointmentResult = document.getElementById("appointment-result");
+// PHP handles appointment submission and database saving.
+// JavaScript only sets the minimum selectable date.
+
+const appointmentDate =
+    document.getElementById("appointment_date");
 
 if (appointmentDate) {
     const today = new Date();
+
     const localToday = new Date(
         today.getTime() - today.getTimezoneOffset() * 60000
     ).toISOString().split("T")[0];
 
     appointmentDate.min = localToday;
-}
-
-if (appointmentForm) {
-    appointmentForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        if (appointmentDate.value < appointmentDate.min) {
-            appointmentResult.textContent =
-                "Please select today or a future date.";
-            return;
-        }
-
-        appointmentResult.textContent =
-            "Demo only: your appointment request has not been saved or sent to a veterinarian.";
-    });
 }
 
 
